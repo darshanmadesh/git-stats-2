@@ -17,9 +17,9 @@ GRAPHQL_QUERY = """
           totalRepositoriesWithContributedCommits
           totalRepositoriesWithContributedPullRequests
           totalRepositoriesWithContributedPullRequestReviews
-          commitContributionsByRepository { repository { name } contributions { totalCount } }
-          pullRequestContributionsByRepository { repository { name } contributions { totalCount } }
-          pullRequestReviewContributionsByRepository { repository { name } contributions { totalCount } }
+          commitContributionsByRepository { repository { name owner { ... on Organization { name } } } contributions { totalCount } }
+          pullRequestContributionsByRepository { repository { name owner { ... on Organization { name } } } contributions { totalCount } }
+          pullRequestReviewContributionsByRepository { repository { name owner { ... on Organization { name } } } contributions { totalCount } }
         }
       }
     }
@@ -93,6 +93,9 @@ def main():
     to_date = os.getenv("TO_DATE")
     if not to_date:
         raise Exception("Please pass the TO_DATE input.")
+
+    print(f"Fetching stats for team: {team_name}")
+    print(f"From: {from_date} to {to_date}")
 
     team_members = read_members_file(team_name)
 
