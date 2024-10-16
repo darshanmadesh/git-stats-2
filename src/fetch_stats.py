@@ -17,9 +17,9 @@ GRAPHQL_QUERY = """
           totalRepositoriesWithContributedCommits
           totalRepositoriesWithContributedPullRequests
           totalRepositoriesWithContributedPullRequestReviews
-          commitContributionsByRepository { repository { name owner { ... on Organization { name } } } contributions { totalCount } }
-          pullRequestContributionsByRepository { repository { name owner { ... on Organization { name } } } contributions { totalCount } }
-          pullRequestReviewContributionsByRepository { repository { name owner { ... on Organization { name } } } contributions { totalCount } }
+          commitContributionsByRepository { repository { name owner { ... on Organization { login } } } contributions { totalCount } }
+          pullRequestContributionsByRepository { repository { name owner { ... on Organization { login } } } contributions { totalCount } }
+          pullRequestReviewContributionsByRepository { repository { name owner { ... on Organization { login } } } contributions { totalCount } }
         }
       }
     }
