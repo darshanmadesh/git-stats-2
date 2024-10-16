@@ -31,4 +31,4 @@ jobs:
           if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
 
       - name: Run Python script
-        run: python python src/fetch_stats.py
+        run: python src/fetch_stats.py
