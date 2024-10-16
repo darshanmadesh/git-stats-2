@@ -6,6 +6,11 @@ on:
       team:
         description: "Team"
         required: true
+        default: "k8s_team"
+        options:
+          - k8s_team
+          - obs_team
+          - db_team
       from_date:
         description: "From date (yyyy-mm-dd)"
         required: true
@@ -32,3 +37,8 @@ jobs:
 
       - name: Run script to gather github stats
         run: python src/fetch_stats.py
+        env:
+          TEAM_NAME: ${{ github.event.inputs.team }}
+          FROM_DATE: ${{ github.event.inputs.from_date }}
+          TO_DATE: ${{ github.event.inputs.to_date }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

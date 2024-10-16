@@ -84,6 +84,9 @@ def main():
     github_token = os.getenv("GITHUB_TOKEN")
     if not github_token:
         raise Exception("Please set the GITHUB_TOKEN environment variable.")
+    team_name = os.getenv("TEAM_NAME")
+    if not team_name:
+        raise Exception("Please pass the TEAM_NAME input.")
     from_date = os.getenv("FROM_DATE")
     if not from_date:
         raise Exception("Please pass the FROM_DATE input.")
@@ -91,7 +94,7 @@ def main():
     if not to_date:
         raise Exception("Please pass the TO_DATE input.")
 
-    team_members = read_members_file()
+    team_members = read_members_file(team_name)
 
     fetch_stats(team_members, github_token, from_date, to_date)
 
