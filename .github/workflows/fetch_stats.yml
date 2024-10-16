@@ -5,6 +5,7 @@ on:
     inputs:
       team:
         description: "Team"
+        type: choice
         required: true
         default: "k8s_team"
         options:
